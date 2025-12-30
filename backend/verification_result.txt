@@ -1,0 +1,9 @@
+Building graph...
+Initializing state...
+Running graph...
+Graph execution completed.
+Vision Output: True
+Comms Output: True
+Navigation Output: True
+Explanation Output: True
+SUCCESS: All agents produced output.

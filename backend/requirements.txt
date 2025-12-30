@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+python-multipart
+streamlit
+langgraph
+langchain
+pydantic
+google-generativeai
+pillow
+networkx
+python-dotenv
+typing_extensions
+supabase

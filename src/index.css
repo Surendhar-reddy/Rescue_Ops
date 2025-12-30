@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+  DISASTER RESPONSE OPERATIONS CENTER
+  Design System: Emergency-Grade Dark Mode Dashboard
+  Inspired by: Military ops centers, NASA mission control, ATC interfaces
+*/
+
+@layer base {
+  :root {
+    /* Base dark theme - optimized for low-light operations */
+    --background: 220 20% 6%;
+    --foreground: 210 20% 92%;
+
+    --card: 220 18% 10%;
+    --card-foreground: 210 20% 92%;
+
+    --popover: 220 18% 8%;
+    --popover-foreground: 210 20% 92%;
+
+    /* Primary - Emergency Amber/Orange */
+    --primary: 32 95% 52%;
+    --primary-foreground: 220 20% 6%;
+
+    /* Secondary - Operational Blue */
+    --secondary: 210 80% 45%;
+    --secondary-foreground: 210 20% 98%;
+
+    --muted: 220 15% 18%;
+    --muted-foreground: 215 15% 55%;
+
+    --accent: 210 80% 45%;
+    --accent-foreground: 210 20% 98%;
+
+    /* Semantic Status Colors */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 71% 45%;
+    --success-foreground: 142 71% 10%;
+
+    --warning: 45 93% 47%;
+    --warning-foreground: 45 93% 10%;
+
+    --critical: 0 84% 60%;
+    --critical-foreground: 0 0% 100%;
+
+    /* Road Status Colors */
+    --road-blocked: 0 72% 51%;
+    --road-partial: 45 93% 47%;
+    --road-clear: 142 71% 45%;
+
+    /* Urgency Colors */
+    --urgency-low: 142 71% 45%;
+    --urgency-medium: 45 93% 47%;
+    --urgency-high: 25 95% 53%;
+    --urgency-critical: 0 84% 60%;
+
+    --border: 220 15% 20%;
+    --input: 220 15% 15%;
+    --ring: 32 95% 52%;
+
+    --radius: 0.5rem;
+
+    /* Sidebar */
+    --sidebar-background: 220 18% 8%;
+    --sidebar-foreground: 210 20% 85%;
+    --sidebar-primary: 32 95% 52%;
+    --sidebar-primary-foreground: 220 20% 6%;
+    --sidebar-accent: 220 15% 15%;
+    --sidebar-accent-foreground: 210 20% 92%;
+    --sidebar-border: 220 15% 18%;
+    --sidebar-ring: 32 95% 52%;
+
+    /* Glow Effects */
+    --glow-primary: 0 0 20px hsl(32 95% 52% / 0.3);
+    --glow-success: 0 0 15px hsl(142 71% 45% / 0.3);
+    --glow-warning: 0 0 15px hsl(45 93% 47% / 0.3);
+    --glow-critical: 0 0 20px hsl(0 84% 60% / 0.4);
+  }
+
+  .dark {
+    --background: 220 20% 6%;
+    --foreground: 210 20% 92%;
+    --card: 220 18% 10%;
+    --card-foreground: 210 20% 92%;
+    --popover: 220 18% 8%;
+    --popover-foreground: 210 20% 92%;
+    --primary: 32 95% 52%;
+    --primary-foreground: 220 20% 6%;
+    --secondary: 210 80% 45%;
+    --secondary-foreground: 210 20% 98%;
+    --muted: 220 15% 18%;
+    --muted-foreground: 215 15% 55%;
+    --accent: 210 80% 45%;
+    --accent-foreground: 210 20% 98%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 15% 20%;
+    --input: 220 15% 15%;
+    --ring: 32 95% 52%;
+    --sidebar-background: 220 18% 8%;
+    --sidebar-foreground: 210 20% 85%;
+    --sidebar-primary: 32 95% 52%;
+    --sidebar-primary-foreground: 220 20% 6%;
+    --sidebar-accent: 220 15% 15%;
+    --sidebar-accent-foreground: 210 20% 92%;
+    --sidebar-border: 220 15% 18%;
+    --sidebar-ring: 32 95% 52%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  /* Custom scrollbar for ops dashboard */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-background;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/50;
+  }
+}
+
+@layer components {
+  /* Status indicators with glow */
+  .status-blocked {
+    @apply bg-road-blocked text-white;
+    box-shadow: var(--glow-critical);
+  }
+
+  .status-partial {
+    @apply bg-road-partial text-black;
+    box-shadow: var(--glow-warning);
+  }
+
+  .status-clear {
+    @apply bg-road-clear text-black;
+    box-shadow: var(--glow-success);
+  }
+
+  /* Panel styling */
+  .ops-panel {
+    @apply bg-card border border-border rounded-lg;
+  }
+
+  .ops-panel-header {
+    @apply px-4 py-3 border-b border-border flex items-center justify-between;
+  }
+
+  .ops-panel-content {
+    @apply p-4;
+  }
+
+  /* Data grid styling */
+  .data-label {
+    @apply text-xs font-medium text-muted-foreground uppercase tracking-wider;
+  }
+
+  .data-value {
+    @apply text-sm font-mono text-foreground;
+  }
+
+  /* Monospace data display */
+  .mono-data {
+    @apply font-mono text-sm tracking-tight;
+  }
+
+  /* Urgency badges */
+  .urgency-low {
+    @apply bg-urgency-low/20 text-urgency-low border border-urgency-low/30;
+  }
+
+  .urgency-medium {
+    @apply bg-urgency-medium/20 text-urgency-medium border border-urgency-medium/30;
+  }
+
+  .urgency-high {
+    @apply bg-urgency-high/20 text-urgency-high border border-urgency-high/30;
+  }
+
+  .urgency-critical {
+    @apply bg-urgency-critical/20 text-urgency-critical border border-urgency-critical/30;
+    animation: pulse-critical 2s ease-in-out infinite;
+  }
+
+  /* Map container */
+  .map-container {
+    @apply w-full h-full rounded-lg overflow-hidden;
+  }
+
+  /* File upload zone */
+  .upload-zone {
+    @apply border-2 border-dashed border-border rounded-lg p-8 text-center transition-colors;
+  }
+
+  .upload-zone:hover,
+  .upload-zone.dragover {
+    @apply border-primary bg-primary/5;
+  }
+}
+
+@layer utilities {
+  /* Animations */
+  @keyframes pulse-critical {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-out;
+  }
+
+  .animate-slide-in-right {
+    animation: slide-in-right 0.3s ease-out;
+  }
+
+  /* Grid pattern background for map areas */
+  .grid-pattern {
+    background-image: 
+      linear-gradient(hsl(var(--border)) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border)) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+}
